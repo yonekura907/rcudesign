@@ -9,16 +9,9 @@ $(function(){
     // navの高さ
     var navContainerTop = $('.nav-container').offset().top;
     // console.log('navContainerTop: ' + navContainerTop);
-    // worksContainerの高さ
-    var worksContainerTop = $('.works-container').offset().top;
-    // console.log('worksContainerTop: ' + worksContainerTop);
-    // newsContaineの高さ
-    var newsContainerTop = $('.news-container').offset().top;
-
 
 
     // Slide Show -----------------------------------------
-    
     var slideShow = $('#slide-show');
     // liの数
     var slideLength = slideShow.find('li').length;
@@ -60,6 +53,7 @@ $(function(){
         });
         // タイマー
         timer = setTimeout(nextIndex, 4000);
+
     }
 
     // 番号を進める関数
@@ -91,7 +85,6 @@ $(function(){
         // ------------------------
         // Nav
         // ------------------------
-
         // PCのサイズのみ
         if(windowWidth > 767){
             // もしdyがnavContainerTop以上になったら
@@ -106,15 +99,12 @@ $(function(){
         // ------------------------
         // Scroll Fade
         // ------------------------
-        // dyがworksContainerTop-windowの高さを引いた値になったら
-        if(dy >= worksContainerTop - windowHeight){
-            // console.log('worksContainerTopだよ');
-            $('.works-container').find('section').addClass('fade-in');
-        }
-        // dyがnewsContainerTop -windowの高さを引いた値になったら
-        if(dy >= newsContainerTop - windowHeight){
-            $('.news-container').find('section').addClass('fade-in-up');
-        }
+        $('.fade-in').each(function(){
+            var fadeInEl = $(this).offset().top;
+            if(dy >= fadeInEl - windowHeight + 100){
+                $(this).addClass('scroll-in');
+            }
+        });
     });
 
 
@@ -128,7 +118,6 @@ $(function(){
         } else {
             // Mobile
         }
-
     });
 
 
